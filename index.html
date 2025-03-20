@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <title>Portfolio Cyber</title>
+</head>
+<body>
+    <div class="header-content">
+        <h1 class="title">Bienvenue sur mon Portfolio</h1>
+        <p class="subtitle">YOGANANTH BRIGHTMAN | BTS SIO | SISR </p>
+    </div>
+
+    <div id="sideNav">
+        <nav>
+            <ul>
+                <li><a href="#btssio">BTS SIO</a></li>
+                <li><a href="#competences">Compétences</a></li>
+                <li><a href="#certif">Certification</a></li>
+                <li><a href="#projets">Projets Personnel</a></li>
+                <li><a href="#veille">Veille Technologique</a></li>
+            </ul>
+        </nav>
+    </div>
+    
+    <div id="menu-container">
+        <div class="menu-indicator" id="menuIndicator">
+            <span class="indicator-text">Cliquez ici</span>
+            <div class="arrow-right"></div>
+        </div>
+        
+        <div id="menuBtn">
+            <svg id="menuIcon" viewBox="0 0 100 100" width="30" height="30">
+                <!-- Menu hamburger cyberpunk -->
+                <rect class="menu-line" x="20" y="30" width="60" height="5" rx="2" fill="#00ffff"/>
+                <rect class="menu-line" x="20" y="50" width="60" height="5" rx="2" fill="#00ffff"/>
+                <rect class="menu-line" x="20" y="70" width="60" height="5" rx="2" fill="#00ffff"/>
+                
+                <!-- Éléments décoratifs -->
+                <circle cx="15" cy="30" r="3" fill="#ff00ff"/>
+                <circle cx="15" cy="50" r="3" fill="#ff00ff"/>
+                <circle cx="15" cy="70" r="3" fill="#ff00ff"/>
+                
+                <rect x="85" y="30" width="3" height="5" fill="#ff00ff"/>
+                <rect x="85" y="50" width="3" height="5" fill="#ff00ff"/>
+                <rect x="85" y="70" width="3" height="5" fill="#ff00ff"/>
+            </svg>
+            
+            <svg id="closeIcon" viewBox="0 0 100 100" width="30" height="30" style="display: none;">
+                <!-- X de fermeture cyberpunk -->
+                <line x1="25" y1="25" x2="75" y2="75" stroke="#00ffff" stroke-width="5" stroke-linecap="round"/>
+                <line x1="75" y1="25" x2="25" y2="75" stroke="#00ffff" stroke-width="5" stroke-linecap="round"/>
+                
+                <!-- Éléments décoratifs -->
+                <circle cx="25" cy="25" r="3" fill="#ff00ff"/>
+                <circle cx="75" cy="25" r="3" fill="#ff00ff"/>
+                <circle cx="25" cy="75" r="3" fill="#ff00ff"/>
+                <circle cx="75" cy="75" r="3" fill="#ff00ff"/>
+            </svg>
+        </div>
+    </div>
+    
+    <script>
+        var menuBtn = document.getElementById("menuBtn");
+        var sideNav = document.getElementById("sideNav");
+        var menuIcon = document.getElementById("menuIcon");
+        var closeIcon = document.getElementById("closeIcon");
+        var menuIndicator = document.getElementById("menuIndicator");
+
+        sideNav.style.right = "-250px";
+
+        menuBtn.onclick = function(){
+            if(sideNav.style.right == "-250px"){
+                sideNav.style.right = "0";
+                menuIcon.style.display = "none";
+                closeIcon.style.display = "block";
+                menuIndicator.style.opacity = "0";
+                menuIndicator.style.transform = "translateX(-20px)";
+                setTimeout(function() {
+                    menuIndicator.style.visibility = "hidden";
+                }, 500);
+            }
+            else{
+                sideNav.style.right = "-250px";
+                menuIcon.style.display = "block";
+                closeIcon.style.display = "none";
+                menuIndicator.style.visibility = "visible";
+                setTimeout(function() {
+                    menuIndicator.style.opacity = "1";
+                    menuIndicator.style.transform = "translateX(0)";
+                }, 10);
+            }
+        }
+    </script>
+</body>
+</html>
