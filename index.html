@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <title>Portfolio Cyber</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="sideNav">
+        <nav>
+            <ul>
+                <li><a href="#btssio">BTS SIO</a></li>
+                <li><a href="#competences">Compétences</a></li>
+                <li><a href="#certif">Certification</a></li>
+                <li><a href="#projets">Projets Personnel</a></li>
+                <li><a href="#veille">Veille Technologique</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div id="menuBtn">
+        <img src="Menu/menu.png" id="menu">
+    </div>
+    <script>
+        var menuBtn = document.getElementById("menuBtn");
+        var sideNav = document.getElementById("sideNav");
+        var menu = document.getElementById("menu");
+
+        sideNav.style.right = "-250px";
+
+        menuBtn.onclick = function(){
+            if(sideNav.style.right == "-250px"){
+                sideNav.style.right = "0";
+                menu.src ="Menu/close.png";
+            }
+            else{
+                sideNav.style.right = "-250px";
+                menu.src ="Menu/menu.png";
+            }
+        }
+    </script>
+     <div class="container">
+        <h1 class="glitch" data-text="Bienvenue sur mon Portfolio">Bienvenue sur mon Portfolio</h1>
+        <p class="subtitle">YOGANANTH BRIGHTMAN | BTS SIO | SISR </p>
+    </div>
+</body>
+</html>
