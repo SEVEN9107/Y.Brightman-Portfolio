@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veille Technologique | YOGANANTH BRIGHTMAN</title>
+    <style>
+        /* Styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #0a0a19;
+            color: #00ffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        /* Overlay pour l'effet de bruit/glitch */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c8TV1mAAAAG3RSTlNAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAvEOwtAAAFVklEQVR4XpWWB67c2BUFb3g557T/hRo9/WUMZHlgr4Bg8Z4qQgQJlHI4A8SzFVrapvmTF9O7dmYRFZ60YiBhJRCgh1FYhiLAmdvX0CzTOpNE77ME0Zty/nWWzchDtiqrmQDeuv3powQ5ta2eN0FY0InkqDD73lT9c9lEzwUNqgFHs9VQce3TVClFCQrSTfOiYkVJQBmpbq2L6iZavPnAPcoU0dSw0SUTqz/GtrGuXfbyyBniKykOWQWGqwwMA7QiYAxi+IlPdqo+hYHnUt5ZPfnsHJyNiDtnpJyayNBkF6cWoYGAMY92U2hXHF/C1M8uP/ZtYdiuj26UdAdQQSXQErwSOMzt/XWRWAz5GuSBIkwG1H3FabJ2OsUOUhGC6tK4EMtJO0ttC6IBD3kM0ve0tJwMdSfjZo+EEISaeTr9P3wYrGjXqyC1krcKdhMpxEnt5JetoulscpyzhXN5FRpuPHvbeQaKxFAEB6EN+cYN6xD7RYGpXpNndMmZgM5Dcs3YSNFDHUo2LGfZuukSWyUYirJAdYbF3MfqEKmjM+I2EfhA94iG3L7uKrR+GdWD73ydlIB+6hgref1QTlmgmbM3/LeX5GI1Ux1RWpgxpLuZ2+I+IjzZ8wqE4nilvQdkUdfhzI5QDWy+kw5Wgg2pGpeEVeCCA7b85BO3F9DzxB3cdqvBzWcmzbyMiqhzuYqtHRVG2y4x+KOlnyqla8AoWWpuBoYRxzXrfKuILl6SfiWCbjxoZJUaCBj1CjH7GIaDbc9kqBY3W/Rgjda1iqQcOJu2WW+76pZC9QG7M00dffe9hNnseupFL53r8F7YHSwJWUKP2q+k7RdsxyOB11n0xtOvnW4irMMFNV4H0uqwS5ExsmP9AxbDTc9JwgneAT5vTiUSm1E7BSflSt3bfa1tv8Di3R8n3Af7MNWzs49hmauE2wP+ttrq+AsWpFG2awvsuOqbipWHgtuvuaAE+A1Z/7gC9hesnr+7wqCwG8c5yAg3AL1fm8T9AZtp/bbJGwl1pNrE7RuOX7PeMRUERVaPpEs+yqeoSmuOlokqw49pgomjLeh7icHNlG19yjs6XXOMedYm5xH2YxpV2tc0Ro2jJfxC50ApuxGob7lMsxfTbeUv07TyYxpeLucEH1gNd4IKH2LAg5TdVhlCafZvpskfncCfx8pOhJzd76bJWeYFnFciwcYfubRc12Ip/ppIhA1/mSZ/RxjFDrJC5xifFjJpY2Xl5zXdguFqYyTR1zSp1Y9p+tktDYYSNflcxI0iyO4TPBdlRcpeqjK/piF5bklq77VSEaA+z8qmJTFzIWiitbnzR794USKBUaT0NTEsVjZqLaFVqJoPN9ODG70IPbfBHKK+/q/AWR0tJzYHRULOa4MP+W/HfGadZUbfw177G7j/OGbIs8TahLyynl4X4RinF793Oz+BU0saXtUHrVBFT/DnA3ctNPoGbs4hRIjTok8i+algT1lTHi4SxFvONKNrgQFAq2/gFnWMXgwffgYMJpiKYkmW3tTg3ZQ9Jq+f8XN+A5eeUKHWvJWJ2sgJ1Sop+wwhqFVijqWaJhwtD8MNlSBeWNNWTa5Z5kPZw5+LbVT99wqTdx29lMUH4OIG/D86ruKEauBjvH5xy6um/Sfj7ei6UUVk4AIl3MyD4MSSTOFgSwsH/QJWaQ5as7ZcmgBZkzjjU1UrQ74ci1gWBCSGHtuV1H2mhSnO3Wp/3fEV5a+4wz//6qy8JxjZsmxxy5+4w9CDNJY09T072iKG0EnOS0arEYgXqYnXcYHwjTtUNAcMelOd4xpkoqiTYICWFq0JSiPfPDQdnt+4/wuqcXY47QILbgAAAABJRU5ErkJggg==');
+            pointer-events: none;
+            opacity: 0.03;
+            z-index: 9999;
+        }
+        
+        /* Header */
+        .header-content {
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+            background-color: rgba(10, 10, 25, 0.8);
+            border-bottom: 2px solid #00ffff;
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+        }
+        
+        .title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: #ff00ff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.7);
+        }
+        
+        .subtitle {
+            color: #00ffff;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+        
+        .cyber-decoration {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        
+        .cyber-line {
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffff, transparent);
+        }
+        
+        .cyber-circle {
+            width: 10px;
+            height: 10px;
+            background-color: #ff00ff;
+            border-radius: 50%;
+            margin: 0 10px;
+            box-shadow: 0 0 10px #ff00ff;
+        }
+        
+        /* Navigation */
+        #sideNav {
+            position: fixed;
+            right: -250px;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background-color: rgba(10, 10, 25, 0.9);
+            border-left: 2px solid #00ffff;
+            z-index: 1000;
+            transition: right 0.5s ease;
+            backdrop-filter: blur(5px);
+            box-shadow: -5px 0 15px rgba(0, 255, 255, 0.3);
+        }
+        
+        .nav-header {
+            padding: 20px;
+            border-bottom: 1px solid #00ffff;
+        }
+        
+        .nav-title {
+            color: #ff00ff;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+        
+        .nav-divider {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffff, transparent);
+            margin-top: 10px;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            padding: 20px;
+        }
+        
+        nav ul li {
+            margin-bottom: 15px;
+        }
+        
+        nav ul li a {
+            color: #00ffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s, transform 0.3s;
+            padding: 10px;
+            border: 1px solid transparent;
+        }
+        
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: #ff00ff;
+            border: 1px solid #00ffff;
+            background-color: rgba(0, 255, 255, 0.1);
+            transform: translateX(-5px);
+        }
+        
+        .nav-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            color: #ff00ff;
+        }
+        
+        .cyber-corner {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border: 2px solid #00ffff;
+        }
+        
+        .top-left {
+            top: 10px;
+            left: 10px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .top-right {
+            top: 10px;
+            right: 10px;
+            border-left: none;
+            border-bottom: none;
+        }
+        
+        .bottom-left {
+            bottom: 10px;
+            left: 10px;
+            border-right: none;
+            border-top: none;
+        }
+        
+        .bottom-right {
+            bottom: 10px;
+            right: 10px;
+            border-left: none;
+            border-top: none;
+        }
+        
+        /* Menu button */
+        #menu-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+        }
+        
+        #menuBtn {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(10, 10, 25, 0.8);
+            border: 1px solid #00ffff;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1001;
+            transition: all 0.3s;
+        }
+        
+        #menuBtn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+        }
+        
+        .menu-line {
+            transition: all 0.3s;
+        }
+        
+        .menu-indicator {
+            background-color: rgba(10, 10, 25, 0.8);
+            border: 1px solid #00ffff;
+            padding: 5px 10px;
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+            transition: all 0.5s;
+        }
+        
+        .indicator-text {
+            color: #00ffff;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-right: 5px;
+        }
+        
+        .arrow-right {
+            width: 0;
+            height: 0;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 5px solid #00ffff;
+        }
+        
+        /* Cursor effect */
+        #cursor-fx {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(0, 255, 255, 0.5);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+        }
+        
+        /* Veille container */
+        .veille-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            position: relative;
+            color: #00ffff;
+            background-color: rgba(10, 10, 25, 0.8);
+            border: 1px solid #00ffff;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            color: #ff00ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #00ffff;
+            padding-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .section-title::before {
+            content: ">";
+            color: #00ffff;
+            position: absolute;
+            left: -15px;
+        }
+        
+        .section-content {
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+        
+        .highlight {
+            color: #ff00ff;
+            font-weight: bold;
+        }
+        
+        .tech-section {
+            border-left: 2px solid #00ffff;
+            padding-left: 20px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .tech-section::before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: -5px;
+            width: 18px;
+            height: 18px;
+            background-color: #0a0a19;
+            border: 2px solid #ff00ff;
+            transform: rotate(45deg);
+        }
+        
+        .header-veille {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .header-veille h1 {
+            font-size: 2.5rem;
+            color: #ff00ff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.7);
+        }
+        
+        .header-veille::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            margin: 1rem auto;
+        }
+        
+        .cyber-quote {
+            padding: 20px;
+            border-left: 3px solid #ff00ff;
+            background-color: rgba(255, 0, 255, 0.1);
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .cyber-quote::before {
+            content: "«";
+            font-size: 3rem;
+            color: #00ffff;
+            position: absolute;
+            left: 5px;
+            top: -10px;
+            opacity: 0.3;
+        }
+        
+        /* Animation de glitch pour certains éléments */
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-2px, 2px);
+            }
+            40% {
+                transform: translate(-2px, -2px);
+            }
+            60% {
+                transform: translate(2px, 2px);
+            }
+            80% {
+                transform: translate(2px, -2px);
+            }
+            100% {
+                transform: translate(0);
+            }
+        }
+        
+        .glitch-text {
+            animation: glitch 3s infinite;
+            display: inline-block;
+        }
+        
+        .citation {
+            font-style: italic;
+            color: #00cccc;
+            font-size: 0.9rem;
+        }
+        
+        /* Digital rain effect */
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 2px solid #00ffff;
+            margin-top: 3rem;
+            background-color: rgba(10, 10, 25, 0.8);
+        }
+        
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+            color: #00ffff;
+        }
+        
+        .footer-decoration {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Overlay pour l'effet de bruit/glitch -->
+    <div class="noise-overlay"></div>
+    
+    <div class="header-content">
+        <h1 class="title">Portfolio</h1>
+        <p class="subtitle">YOGANANTH BRIGHTMAN | BTS SIO | SISR</p>
+        
+        <!-- Décoration cyberpunk pour le header -->
+        <div class="cyber-decoration">
+            <div class="cyber-line"></div>
+            <div class="cyber-circle"></div>
+            <div class="cyber-line"></div>
+        </div>
+    </div>
+
+    <!-- Navigation latérale -->
+    <div id="sideNav">
+        <div class="nav-header">
+            <div class="nav-title">NAVIGATION</div>
+            <div class="nav-divider"></div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html#btssio"><span class="nav-icon">⟐</span>BTS SIO</a></li>
+                <li><a href="index.html#competences"><span class="nav-icon">⟡</span>Compétences</a></li>
+                <li><a href="index.html#certif"><span class="nav-icon">⟢</span>Certification</a></li>
+                <li><a href="index.html#projets"><span class="nav-icon">⟣</span>Projets Personnel</a></li>
+                <li><a href="veille.html" class="active"><span class="nav-icon">⟜</span>Veille Technologique</a></li>
+                <li><a href="contact.html"><span class="nav-icon">⟲</span>Contact</a></li>
+            </ul>
+        </nav>
+        <!-- Décorations pour le menu -->
+        <div class="cyber-corner top-left"></div>
+        <div class="cyber-corner top-right"></div>
+        <div class="cyber-corner bottom-left"></div>
+        <div class="cyber-corner bottom-right"></div>
+    </div>
+    
+    <div id="menu-container">
+        <div class="menu-indicator" id="menuIndicator">
+            <span class="indicator-text">MENU</span>
+            <div class="arrow-right"></div>
+        </div>
+        
+        <div id="menuBtn">
+            <svg id="menuIcon" viewBox="0 0 100 100" width="30" height="30">
+                <!-- Menu hamburger cyberpunk -->
+                <rect class="menu-line menu-line-1" x="20" y="30" width="60" height="5" rx="2" fill="#00ffff"/>
+                <rect class="menu-line menu-line-2" x="20" y="50" width="60" height="5" rx="2" fill="#00ffff"/>
+                <rect class="menu-line menu-line-3" x="20" y="70" width="60" height="5" rx="2" fill="#00ffff"/>
+                
+                <!-- Éléments décoratifs -->
+                <circle cx="15" cy="30" r="3" fill="#ff00ff"/>
+                <circle cx="15" cy="50" r="3" fill="#ff00ff"/>
+                <circle cx="15" cy="70" r="3" fill="#ff00ff"/>
+                
+                <rect x="85" y="30" width="3" height="5" fill="#ff00ff"/>
+                <rect x="85" y="50" width="3" height="5" fill="#ff00ff"/>
+                <rect x="85" y="70" width="3" height="5" fill="#ff00ff"/>
+            </svg>
+            
+            <svg id="closeIcon" viewBox="0 0 100 100" width="30" height="30" style="display: none;">
+                <!-- X de fermeture cyberpunk -->
+                <line x1="25" y1="25" x2="75" y2="75" stroke="#00ffff" stroke-width="5" stroke-linecap="round"/>
+                <line x1="75" y1="25" x2="25" y2="75" stroke="#00ffff" stroke-width="5" stroke-linecap="round"/>
+                
+                <!-- Éléments décoratifs -->
+                <circle cx="25" cy="25" r="3" fill="#ff00ff"/>
+                <circle cx="75" cy="25" r="3" fill="#ff00ff"/>
+                <circle cx="25" cy="75" r="3" fill="#ff00ff"/>
+                <circle cx="75" cy="75" r="3" fill="#ff00ff"/>
+            </svg>
+        </div>
+    </div>
+    
+    <!-- Contenu principal -->
+    <section id="content-container">
+        <div class="veille-container">
+            <div class="header-veille">
+                <h1><span class="glitch-text">Veille</span> Technologique</h1>
+                <p>Intelligence Artificielle dans l'Industrie Aérospatiale</p>
+            </div>
+            
+            <div class="cyber-quote">
+                L'intelligence artificielle transforme profondément l'industrie aérospatiale, en optimisant divers aspects tels que la conception, la fabrication, la maintenance et la sécurité des aéronefs.
+            </div>
+            
+            <div class="tech-section">
+                <h2 class="section-title">Optimisation de la conception et de la fabrication</h2>
+                <div class="section-content">
+                    Les algorithmes d'<span class="highlight">IA</span> analysent de vastes ensembles de données pour identifier des modèles et des tendances, permettant ainsi aux ingénieurs d'optimiser la conception des aéronefs pour améliorer leurs performances et leur efficacité. De plus, l'<span class="highlight">IA</span> est utilisée dans la simulation des processus de fabrication pour prévoir les problèmes potentiels et optimiser la production. Par exemple, des logiciels d'inspection des cordons de soudure, propulsés par l'<span class="highlight">IA</span>, analysent les images des soudures pour détecter automatiquement les défauts potentiels, garantissant ainsi la qualité et l'intégrité des structures des aéronefs.
+                    <div class="citation">[Citation: turn0search3]</div>
+                </div>
+            </div>
+            
+            <div class="tech-section">
+                <h2 class="section-title">Maintenance prédictive</h2>
+                <div class="section-content">
+                    L'<span class="highlight">IA</span> analyse en temps réel les données provenant de capteurs installés sur les aéronefs pour anticiper les défaillances, optimiser la maintenance et réduire les coûts. Par exemple, des entreprises comme Airbus collaborent avec des institutions de recherche pour intégrer l'<span class="highlight">IA</span> dans la modélisation des processus de fabrication, optimisant ainsi la conception des avions. Cette intégration permet de réduire les coûts de production et d'améliorer l'efficacité des cycles de vie des produits.
+                    <div class="citation">[Citation: turn0search1]</div>
+                </div>
+            </div>
+            
+            <div class="tech-section">
+                <h2 class="section-title">Navigation autonome</h2>
+                <div class="section-content">
+                    Les drones et véhicules autonomes intègrent des systèmes d'<span class="highlight">IA</span> sophistiqués leur permettant de naviguer sans intervention humaine, facilitant ainsi les missions de reconnaissance, de surveillance et même de combat. Par exemple, le projet <span class="highlight">Skyborg</span> de l'US Air Force démontre la capacité des drones pilotés par <span class="highlight">IA</span> à exécuter des missions de combat autonomes.
+                    <div class="citation">[Citation: turn0search2]</div>
+                </div>
+            </div>
+            
+            <div class="tech-section">
+                <h2 class="section-title">Optimisation des opérations et réduction de l'empreinte environnementale</h2>
+                <div class="section-content">
+                    L'<span class="highlight">IA</span> contribue à l'optimisation des itinéraires de vol, de la vitesse et de l'altitude, ce qui améliore l'efficacité énergétique et réduit les émissions de CO₂. Par exemple, des systèmes analysent les données de vol pour fournir des recommandations opérationnelles, contribuant ainsi à une aviation plus durable.
+                    <div class="citation">[Citation: turn0search1]</div>
+                </div>
+            </div>
+            
+            <div class="tech-section">
+                <h2 class="section-title">Cybersécurité et protection des systèmes embarqués</h2>
+                <div class="section-content">
+                    La cybersécurité est essentielle dans le domaine aérospatial. Des entreprises participent à des projets visant à développer des <span class="highlight">IA souveraines</span> de cyberdéfense embarquée pour protéger les aéronefs contre les cybermenaces. Ces initiatives renforcent la résilience des systèmes face aux attaques potentielles.
+                    <div class="citation">[Citation: turn0search2]</div>
+                </div>
+            </div>
+            
+            <div class="tech-section">
+                <h2 class="section-title">Applications militaires et systèmes autonomes</h2>
+                <div class="section-content">
+                    L'<span class="highlight">IA</span> est également intégrée dans les systèmes militaires pour améliorer les performances opérationnelles. Par exemple, l'US Air Force a testé une <span class="highlight">IA</span> nommée <span class="highlight">Artuµ</span> en tant que copilote d'un avion espion U-2, démontrant la capacité de l'<span class="highlight">IA</span> à gérer des systèmes complexes en collaboration avec des pilotes humains.
+                    <div class="citation">[Citation: turn0search2]</div>
+                </div>
+            </div>
+            
+            <div class="cyber-quote">
+                En somme, l'intelligence artificielle révolutionne le secteur aérospatial en améliorant la conception, la maintenance, l'efficacité opérationnelle et la sécurité des systèmes, tout en ouvrant la voie à de nouvelles applications innovantes.
+            </div>
+            
+            <!-- Nouvelle section sur l'avenir de l'IA dans l'aérospatiale -->
+            <div class="tech-section">
+                <h2 class="section-title">Tendances futures et innovations</h2>
+                <div class="section-content">
+                    Les avancées récentes en <span class="highlight">IA générative</span> ouvrent de nouvelles perspectives pour l'industrie aérospatiale. On peut s'attendre à voir apparaître des systèmes capables de concevoir automatiquement des structures aérodynamiques optimisées, ainsi que des assistants virtuels sophistiqués pour aider les équipages pendant les vols. La convergence de l'<span class="highlight">IA</span> avec d'autres technologies émergentes comme la fabrication additive, la réalité augmentée et les matériaux intelligents pourrait transformer radicalement l'industrie dans les prochaines décennies.
+                    <div class="citation">[Citation: Analyse
+
+                        <script>
+                            // Script pour la fonctionnalité du menu
+document.addEventListener('DOMContentLoaded', function() {
+    // Éléments du menu
+    const menuBtn = document.getElementById('menuBtn');
+    const menuIcon = document.getElementById('menuIcon');
+    const closeIcon = document.getElementById('closeIcon');
+    const sideNav = document.getElementById('sideNav');
+    const menuIndicator = document.getElementById('menuIndicator');
+    
+    // État du menu
+    let menuOpen = false;
+    
+    // Fonction pour ouvrir/fermer le menu
+    function toggleMenu() {
+        if (menuOpen) {
+            // Fermer le menu
+            sideNav.style.right = '-250px';
+            menuIcon.style.display = 'block';
+            closeIcon.style.display = 'none';
+            menuIndicator.style.opacity = '1';
+        } else {
+            // Ouvrir le menu
+            sideNav.style.right = '0';
+            menuIcon.style.display = 'none';
+            closeIcon.style.display = 'block';
+            menuIndicator.style.opacity = '0';
+        }
+        menuOpen = !menuOpen;
+    }
+    
+    // Événement au clic sur le bouton de menu
+    menuBtn.addEventListener('click', toggleMenu);
+    
+    // Effet de curseur personnalisé
+    const cursorFx = document.createElement('div');
+    cursorFx.id = 'cursor-fx';
+    document.body.appendChild(cursorFx);
+    
+    document.addEventListener('mousemove', function(e) {
+        cursorFx.style.left = e.clientX + 'px';
+        cursorFx.style.top = e.clientY + 'px';
+    });
+    
+    // Animation pour les liens de navigation
+    const navLinks = document.querySelectorAll('nav ul li a');
+    navLinks.forEach(link => {
+        link.addEventListener('mouseenter', function() {
+            cursorFx.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            cursorFx.style.borderColor = '#ff00ff';
+        });
+        
+        link.addEventListener('mouseleave', function() {
+            cursorFx.style.transform = 'translate(-50%, -50%) scale(1)';
+            cursorFx.style.borderColor = 'rgba(0, 255, 255, 0.5)';
+        });
+    });
+    
+    // Effet de pluie numérique (Matrix)
+    const canvas = document.createElement('canvas');
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+    
+    // Redimensionner le canvas pour qu'il occupe tout l'écran
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    
+    // Paramètres pour l'effet de pluie numérique
+    const characters = "01";
+    const fontSize = 15;
+    const columns = canvas.width / fontSize;
+    const drops = [];
+    
+    // Initialiser les positions des gouttes
+    for (let i = 0; i < columns; i++) {
+        drops[i] = Math.floor(Math.random() * -canvas.height);
+    }
+    
+    // Fonction pour dessiner l'effet de pluie numérique
+    function drawMatrix() {
+        // Fond semi-transparent pour créer l'effet de traînée
+        ctx.fillStyle = 'rgba(10, 10, 25, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = '#00ffff';
+        ctx.font = fontSize + 'px monospace';
+        
+        // Dessiner les caractères
+        for (let i = 0; i < drops.length; i++) {
+            // Caractère aléatoire
+            const text = characters.charAt(Math.floor(Math.random() * characters.length));
+            
+            // Position x et y du caractère
+            const x = i * fontSize;
+            const y = drops[i] * fontSize;
+            
+            // Dessiner le caractère
+            ctx.fillText(text, x, y);
+            
+            // Réinitialiser quand la goutte atteint le bas
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+            
+            // Déplacer la goutte
+            drops[i]++;
+        }
+    }
+    
+    // Animation de la pluie numérique
+    setInterval(drawMatrix, 50);
+    
+    // Animation de glitch pour certains éléments
+    const glitchElements = document.querySelectorAll('.glitch-text');
+    
+    function applyRandomGlitch() {
+        glitchElements.forEach(element => {
+            // Appliquer un effet de glitch aléatoire
+            const randomX = Math.random() * 4 - 2;
+            const randomY = Math.random() * 4 - 2;
+            const randomSkew = Math.random() * 2 - 1;
+            
+            if (Math.random() > 0.7) {
+                element.style.transform = `translate(${randomX}px, ${randomY}px) skew(${randomSkew}deg)`;
+                element.style.textShadow = `${randomX}px ${randomY}px 3px rgba(255, 0, 255, 0.7)`;
+                
+                // Rétablir après un court délai
+                setTimeout(() => {
+                    element.style.transform = 'translate(0)';
+                    element.style.textShadow = '0 0 10px rgba(255, 0, 255, 0.7)';
+                }, 100);
+            }
+        });
+    }
+    
+    // Appliquer l'effet de glitch à intervalles aléatoires
+    setInterval(applyRandomGlitch, 2000);
+});
+
+                        </script>
