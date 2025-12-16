@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio – BTS SIO</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(180deg, #6b5cff 0%, #b56cff 35%, #ff9f7f 70%, #ffd29f 100%);
+      background-attachment: fixed;
+      color: #ffffff;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      transition: background 0.3s ease;
+    }
+
+    body.dark-mode {
+      background: linear-gradient(180deg, #0a0015 0%, #1a0a2e 35%, #16213e 70%, #0f3460 100%) !important;
+      background-attachment: fixed;
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(125, 249, 255, 0.3);
+      color: #7df9ff;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      z-index: 998;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 15px rgba(125, 249, 255, 0.4);
+    }
+
+    body.dark-mode .card {
+      background: rgba(20, 15, 50, 0.7);
+      border-color: rgba(125, 249, 255, 0.2);
+    }
+
+    /* Animation au scroll */
+    .card, .grid > * {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .card.visible, .grid > *.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Dégradés différents pour chaque section */
+    #accueil {
+      background: linear-gradient(135deg, rgba(107, 92, 255, 0.1) 0%, rgba(181, 108, 255, 0.05) 100%);
+    }
+
+    #formations {
+      background: linear-gradient(135deg, rgba(181, 108, 255, 0.1) 0%, rgba(255, 159, 127, 0.05) 100%);
+    }
+
+    #entreprise {
+      background: linear-gradient(135deg, rgba(255, 159, 127, 0.1) 0%, rgba(255, 210, 159, 0.05) 100%);
+    }
+
+    #projets {
+      background: linear-gradient(135deg, rgba(107, 92, 255, 0.08) 0%, rgba(181, 108, 255, 0.08) 100%);
+    }
+
+    #competences {
+      background: linear-gradient(135deg, rgba(125, 249, 255, 0.05) 0%, rgba(255, 143, 251, 0.05) 100%);
+    }
+
+    #veille {
+      background: linear-gradient(135deg, rgba(181, 108, 255, 0.08) 0%, rgba(125, 249, 255, 0.08) 100%);
+    }
+
+    #cv {
+      background: linear-gradient(135deg, rgba(255, 210, 159, 0.08) 0%, rgba(107, 92, 255, 0.08) 100%);
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      backdrop-filter: blur(12px);
+      background: rgba(20, 10, 40, 0.45);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      padding: 16px;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #ffe4ff;
+      text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      position: relative;
+      font-size: 0.95rem;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #7df9ff;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #7df9ff;
+      text-shadow: 0 0 12px rgba(125,249,255,0.8);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 140px 8% 100px;
+      position: relative;
+      margin-left: 260px;
+      animation: fadeIn 0.6s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 3.8rem;
+      margin-bottom: 25px;
+      background: linear-gradient(90deg, #7df9ff, #ff8ffb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    h2 {
+      font-size: 2.6rem;
+      margin-bottom: 50px;
+      color: #ffffff;
+      text-shadow: 0 0 20px rgba(255,255,255,0.35);
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      max-width: 900px;
+      color: #fdf2ff;
+      margin-bottom: 15px;
+    }
+
+    .intro-text {
+      font-size: 1.25rem;
+      max-width: 800px;
+    }
+
+    .card {
+      background: rgba(10, 5, 30, 0.55);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.45);
+      backdrop-filter: blur(10px);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 40px 90px rgba(0,0,0,0.6);
+      border-color: rgba(125,249,255,0.3);
+      background: rgba(10, 5, 30, 0.7);
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      color: #7df9ff;
+    }
+
+    .card-tag {
+      display: inline-block;
+      background: rgba(125,249,255,0.15);
+      color: #7df9ff;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-top: 12px;
+      border: 1px solid rgba(125,249,255,0.3);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(125,249,255,0.12);
+      border: 1px solid rgba(125,249,255,0.3);
+      color: #7df9ff;
+      padding: 8px 16px;
+      border-radius: 24px;
+      font-size: 0.95rem;
+      margin: 8px 8px 8px 0;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .badge:hover {
+      background: rgba(125,249,255,0.25);
+      transform: translateY(-2px);
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 50px 40px;
+      background: rgba(10, 5, 30, 0.6);
+      color: #ffe4ff;
+      backdrop-filter: blur(10px);
+      margin-left: 260px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .social-links a {
+      color: #7df9ff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: #ff8ffb;
+      text-shadow: 0 0 10px rgba(255,143,251,0.6);
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 260px;
+      height: 100vh;
+      background: rgba(15, 10, 35, 0.6);
+      backdrop-filter: blur(14px);
+      border-right: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      flex-direction: column;
+      padding: 30px 20px;
+      z-index: 999;
+      overflow-y: auto;
+    }
+
+    .profile {
+      margin-bottom: 40px;
+      text-align: left;
+    }
+
+    .profile-avatar {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #7df9ff, #ff8ffb);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 15px;
+      box-shadow: 0 0 20px rgba(125,249,255,0.4);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .profile h3 {
+      font-size: 1.4rem;
+      background: linear-gradient(90deg, #7df9ff, #ff8ffb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
+
+    .profile span {
+      display: block;
+      font-size: 0.9rem;
+      color: #f5d0fe;
+      margin-bottom: 3px;
+    }
+
+    .sidebar nav {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .sidebar nav a {
+      color: #ffe4ff;
+      text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
+    }
+
+    .sidebar nav a:hover {
+      background: rgba(255,255,255,0.1);
+      color: #7df9ff;
+      box-shadow: inset 0 0 12px rgba(125,249,255,0.4);
+      border-left-color: #7df9ff;
+    }
+
+    @media (max-width: 1024px) {
+      section, footer {
+        margin-left: 0;
+        padding: 100px 6% 80px;
+      }
+
+      .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.15);
+        padding: 20px;
+      }
+
+      .profile {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .sidebar nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      h1 {
+        font-size: 2.8rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      .theme-toggle {
+        top: 80px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+    }
+
+    strong {
+      color: #7df9ff;
+      font-weight: 600;
+    }
+
+    ul {
+      margin-left: 20px;
+      margin-top: 10px;
+    }
+
+    li {
+      margin: 8px 0;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 40px;
+      border-bottom: 2px solid rgba(255,255,255,0.1);
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      color: #ffe4ff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 12px 24px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-bottom: 3px solid transparent;
+      position: relative;
+      bottom: -2px;
+    }
+
+    .tab-btn:hover {
+      color: #7df9ff;
+    }
+
+    .tab-btn.active {
+      color: #7df9ff;
+      border-bottom-color: #7df9ff;
+      text-shadow: 0 0 12px rgba(125,249,255,0.6);
+    }
+
+    .tab-content {
+      display: none;
+      animation: slideDown 0.4s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(5px);
+    }
+
+    .lightbox.active {
+      display: flex;
+      animation: fadeInLightbox 0.3s ease;
+    }
+
+    @keyframes fadeInLightbox {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90vh;
+      animation: zoomIn 0.3s ease;
+    }
+
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 12px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: #7df9ff;
+      font-size: 2.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .lightbox-close:hover {
+      color: #ff8ffb;
+      text-shadow: 0 0 10px rgba(255, 143, 251, 0.6);
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #7df9ff;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 2001;
+    }
+
+    .lightbox-nav:hover {
+      color: #ff8ffb;
+      text-shadow: 0 0 10px rgba(255, 143, 251, 0.6);
+    }
+
+    .lightbox-prev {
+      left: -60px;
+    }
+
+    .lightbox-next {
+      right: -60px;
+    }
+
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      height: 200px;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(125, 249, 255, 0.3);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.3s ease;
+    }
+
+    .gallery-item:hover img {
+      filter: brightness(1.1);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-zoom-icon {
+      color: #7df9ff;
+      font-size: 2rem;
+    }
+
+    /* Download CV Button */
+    .download-cv-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #7df9ff, #ff8ffb);
+      color: #1a0a2e;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 5px 20px rgba(125, 249, 255, 0.3);
+      margin-top: 20px;
+      display: inline-block;
+    }
+
+    .download-cv-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(125, 249, 255, 0.5);
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #7df9ff, #ff8ffb);
+      border: none;
+      border-radius: 50%;
+      color: #1a0a2e;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(125, 249, 255, 0.3);
+      z-index: 1500;
+      font-weight: 700;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 10px 30px rgba(125, 249, 255, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</button>
+
+<aside class="sidebar">
+  <div class="profile">
+    <div class="profile-avatar">👨‍💻</div>
+    <h3>YOGANANTH BRIGHTMAN</h3>
+    <span>BTS SIO SISR</span>
+    <span>2024 – 2026</span>
+  </div>
+  <nav>
+    <a href="#accueil">Accueil</a>
+    <a href="#formations">Formations</a>
+    <a href="#entreprise">Entreprise</a>
+    <a href="#projets">Projets</a>
+    <a href="#competences">Compétences</a>
+    <a href="#veille">Veille technologique</a>
+    <a href="#cv">Infos CV</a>
+  </nav>
+</aside>
+
+<section id="accueil">
+  <h1>Bienvenue 👋</h1>
+  <p class="intro-text">
+    Étudiant en <strong>BTS SIO option SISR</strong>, je me passionne pour l'infrastructure IT, les réseaux et la sécurité informatique. Ce portfolio présente mon parcours académique, mes expériences professionnelles et les projets qui m'ont permis de développer mes compétences techniques.
+  </p>
+  <p style="margin-top: 30px; color: #f5d0fe;">
+    Actuellement en recherche d'une alternance pour approfondir mes connaissances en administration système et réseaux.
+  </p>
+</section>
+
+<section id="formations">
+  <h2>📚 Formations</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>BTS SIO – Option SISR</h3>
+      <p>Formation spécialisée en administration des systèmes et réseaux. Apprentissage de la virtualisation, sécurité informatique, services réseau et gestion d'infrastructure.</p>
+      <span class="card-tag">2024 – 2025</span>
+    </div>
+    <div class="card">
+      <h3>Baccalauréat</h3>
+      <p>Formation générale avec spécialisation en numérique et informatique. Fondamentaux scientifiques et technologiques.</p>
+      <span class="card-tag">Générale</span>
+    </div>
+  </div>
+</section>
+
+<section id="entreprise">
+  <h2>🏢 Entreprise & Expérience</h2>
+  <div class="card">
+    <h3>Alternance / Stage</h3>
+    <p>
+      <strong>Lieu :</strong> [Nom de l'entreprise]<br>
+      <strong>Secteur :</strong> [Informatique / Télécom / Service]<br>
+      <strong>Durée :</strong> [À remplir]
+    </p>
+    <p style="margin-top: 20px;">
+      <strong>Missions réalisées :</strong>
+    </p>
+    <ul>
+      <li>Administration et maintenance des serveurs</li>
+      <li>Gestion du parc informatique</li>
+      <li>Support utilisateur niveau 2</li>
+      <li>Déploiement d'applications</li>
+    </ul>
+    <p style="margin-top: 20px;">
+      <strong>Environnement technique :</strong> VMware, Proxmox, Windows Server, Linux, Active Directory
+    </p>
+  </div>
+</section>
+
+<section id="projets">
+  <h2>💼 Projets Réalisés</h2>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('bts')">Projets BTS</button>
+    <button class="tab-btn" onclick="switchTab('pro')">Projets Pro</button>
+    <button class="tab-btn" onclick="switchTab('perso')">Projets Perso</button>
+  </div>
+
+  <div id="bts" class="tab-content active">
+    <div class="grid">
+      <div class="card">
+        <h3>Déploiement Joomla sur Debian 12</h3>
+        <p>Mise en place complète d'un CMS Joomla sous Linux Debian 12. Configuration du serveur, base de données, SSL et firewall.</p>
+        <span class="card-tag">Linux</span>
+        <span class="card-tag">Web</span>
+        <div class="gallery">
+          <div class="gallery-item" onclick="openLightbox(0)">
+            <img src="https://via.placeholder.com/300x200/6b5cff/ffffff?text=Joomla+Deploy+1" alt="Déploiement Joomla">
+            <div class="gallery-overlay">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+          </div>
+          <div class="gallery-item" onclick="openLightbox(1)">
+            <img src="https://via.placeholder.com/300x200/b56cff/ffffff?text=Joomla+Deploy+2" alt="Configuration">
+            <div class="gallery-overlay">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Architecture Réseau Virtuelle</h3>
+        <p>Conception d'une architecture réseau complexe sous GNS3 avec routeurs, switches et implémentation de protocoles de routage dynamique.</p>
+        <span class="card-tag">Réseaux</span>
+        <span class="card-tag">GNS3</span>
+        <div class="gallery">
+          <div class="gallery-item" onclick="openLightbox(2)">
+            <img src="https://via.placeholder.com/300x200/ff9f7f/ffffff?text=Architecture+Reseau" alt="Architecture">
+            <div class="gallery-overlay">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Gestion Parc Informatique</h3>
+        <p>Mise en œuvre de GLPI pour la gestion centralisée du parc informatique, inventaire, tickets de support et maintenance préventive.</p>
+        <span class="card-tag">GLPI</span>
+        <span class="card-tag">Admin</span>
+        <div class="gallery">
+          <div class="gallery-item" onclick="openLightbox(3)">
+            <img src="https://via.placeholder.com/300x200/ffd29f/ffffff?text=GLPI+Dashboard" alt="GLPI">
+            <div class="gallery-overlay">
+              <span class="gallery-zoom-icon">🔍</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="pro" class="tab-content">
+    <div class="grid">
+      <div class="card">
+        <h3>Migration Infrastructure Cloud</h3>
+        <p>Migration complète de l'infrastructure on-premise vers AWS. Planification, déploiement et optimisation des coûts.</p>
+        <span class="card-tag">AWS</span>
+        <span class="card-tag">Cloud</span>
+      </div>
+      <div class="card">
+        <h3>Automatisation Déploiement</h3>
+        <p>Scripts de déploiement automatisé avec Terraform et Ansible pour réduire les temps de mise en production.</p>
+        <span class="card-tag">DevOps</span>
+        <span class="card-tag">Automation</span>
+      </div>
+      <div class="card">
+        <h3>Audit Sécurité Réseau</h3>
+        <p>Audit complet de l'infrastructure réseau, identification des vulnérabilités et implémentation de solutions de sécurisation.</p>
+        <span class="card-tag">Sécurité</span>
+        <span class="card-tag">Audit</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="perso" class="tab-content">
+    <div class="grid">
+      <div class="card">
+        <h3>Portfolio Personnel</h3>
+        <p>Création de ce portfolio avec design moderne, animations fluides et responsive design pour valoriser mon parcours professionnel.</p>
+        <span class="card-tag">HTML/CSS</span>
+        <span class="card-tag">Design</span>
+      </div>
+      <div class="card">
+        <h3>Homelab Virtualisé</h3>
+        <p>Mise en place d'un homelab avec Proxmox pour apprendre et tester de nouvelles technologies dans un environnement contrôlé.</p>
+        <span class="card-tag">Virtualisation</span>
+        <span class="card-tag">Linux</span>
+      </div>
+      <div class="card">
+        <h3>Script de Monitoring</h3>
+        <p>Développement de scripts Python pour monitorer l'infrastructure personnelle et alerter en cas de problème.</p>
+        <span class="card-tag">Python</span>
+        <span class="card-tag">Monitoring</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="competences">
+  <h2>🛠️ Compétences Techniques</h2>
+  <h3 style="font-size: 1.3rem; margin-bottom: 20px; color: #f5d0fe;">Web & Développement</h3>
+  <div style="margin-bottom: 40px;">
+    <span class="badge">🌐 HTML5</span>
+    <span class="badge">🎨 CSS3</span>
+    <span class="badge">⚡ JavaScript</span>
+    <span class="badge">📱 Responsive Design</span>
+  </div>
+
+  <h3 style="font-size: 1.3rem; margin-bottom: 20px; color: #f5d0fe;">Infrastructure & Virtualisation</h3>
+  <div style="margin-bottom: 40px;">
+    <span class="badge">🖥️ VMware ESXi</span>
+    <span class="badge">📦 VirtualBox</span>
+    <span class="badge">☁️ Proxmox</span>
+    <span class="badge">🪟 Windows Server</span>
+  </div>
+
+  <h3 style="font-size: 1.3rem; margin-bottom: 20px; color: #f5d0fe;">Réseaux</h3>
+  <div style="margin-bottom: 40px;">
+    <span class="badge">🌐 TCP/IP</span>
+    <span class="badge">🛣️ Routage OSPF</span>
+    <span class="badge">📡 WiFi 802.11</span>
+    <span class="badge">🏗️ VLAN</span>
+    <span class="badge">🔒 Firewalls</span>
+  </div>
+
+  <h3 style="font-size: 1.3rem; margin-bottom: 20px; color: #f5d0fe;">Systèmes d'exploitation</h3>
+  <div style="margin-bottom: 40px;">
+    <span class="badge">🐧 Linux (Debian/Ubuntu)</span>
+    <span class="badge">🪟 Windows</span>
+    <span class="badge">⌨️ Shell Script</span>
+    <span class="badge">👤 Active Directory</span>
+  </div>
+
+  <h3 style="font-size: 1.3rem; margin-bottom: 20px; color: #f5d0fe;">Outils & Services</h3>
+  <div>
+    <span class="badge">📊 GLPI</span>
+    <span class="badge">🖇️ GNS3</span>
+    <span class="badge">🔍 Wireshark</span>
+    <span class="badge">🌳 Git</span>
+  </div>
+</section>
+
+<section id="veille">
+  <h2>📡 Veille Technologique</h2>
+  <div class="card">
+    <h3>Thématiques Suivies</h3>
+    <ul>
+      <li><strong>Cybersécurité :</strong> Zero Trust, SIEM, EDR, threat hunting</li>
+      <li><strong>Infrastructure :</strong> Cloud computing (AWS, Azure), Kubernetes, containerisation</li>
+      <li><strong>Réseaux :</strong> SD-WAN, 5G, Network Slicing</li>
+      <li><strong>IA & Automatisation :</strong> Impacte sur l'IT et la sécurité</li>
+    </ul>
+
+    <p style="margin-top: 25px;"><strong>Outils de veille utilisés :</strong></p>
+    <ul>
+      <li>Feedly et agrégateurs RSS</li>
+      <li>LinkedIn, Twitter/X, Reddit</li>
+      <li>Blogs spécialisés (Cisco, Microsoft, SecurityWeek)</li>
+      <li>Podcasts technologiques</li>
+    </ul>
+
+    <p style="margin-top: 25px;"><strong>Apports pour le BTS SIO SISR :</strong></p>
+    <ul>
+      <li>Compréhension des tendances actuelles du marché</li>
+      <li>Anticipation des évolutions technologiques</li>
+      <li>Développement d'une culture de la sécurité</li>
+      <li>Renforcement des compétences pratiques</li>
+    </ul>
+  </div>
+</section>
+
+<section id="cv">
+  <h2>📋 Informations CV</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Profil Professionnel</h3>
+      <p>Administrateur système et réseau junior, motivé par la sécurité informatique. Autonome, curieux et en constante évolution face aux technologies émergentes.</p>
+      <button class="download-cv-btn" onclick="downloadCV()">⬇️ Télécharger mon CV (PDF)</button>
+    </div>
+    <div class="card">
+      <h3>Objectif</h3>
+      <p>Recherche d'une alternance pour consolider mes compétences en administration d'infrastructure IT, avec intérêt particulier pour la sécurité réseau.</p>
+    </div>
+    <div class="card">
+      <h3>Certifications</h3>
+      <p><strong>En cours :</strong> CompTIA A+, Cisco CCNA<br><strong>Complétées :</strong> [À remplir]</p>
+    </div>
+    <div class="card">
+      <h3>Langues</h3>
+      <p><strong>Français :</strong> Natif<br><strong>Anglais :</strong> Intermédiaire (niveau B1/B2)</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-content">
+    <div class="social-links">
+      <a href="mailto:ton.email@exemple.com">📧 Email</a>
+      <a href="https://linkedin.com" target="_blank">💼 LinkedIn</a>
+      <a href="https://github.com" target="_blank">🐙 GitHub</a>
+    </div>
+    <p>© 2025 – Portfolio BTS SIO | Conçu avec passion pour valoriser mon parcours</p>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+  <div class="lightbox-content">
+    <img id="lightbox-img" class="lightbox-img" src="" alt="">
+    <span class="lightbox-nav lightbox-prev" onclick="prevImage()">❮</span>
+    <span class="lightbox-nav lightbox-next" onclick="nextImage()">❯</span>
+  </div>
+</div>
+
+<script>
+  function switchTab(tabName) {
+    const contents = document.querySelectorAll('.tab-content');
+    contents.forEach(content => content.classList.remove('active'));
+    
+    const buttons = document.querySelectorAll('.tab-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    
+    document.getElementById(tabName).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function toggleTheme() {
+    document.body.classList.toggle('dark-mode');
+    const toggle = document.getElementById('themeToggle');
+    toggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+  }
+
+  // Charger le thème sauvegardé
+  window.addEventListener('load', () => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark-mode');
+      document.getElementById('themeToggle').textContent = '☀️';
+    }
+  });
+
+  // Animation au scroll
+  function revealOnScroll() {
+    const cards = document.querySelectorAll('.card, .grid > *');
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) {
+        card.classList.add('visible');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', revealOnScroll);
+  window.addEventListener('load', revealOnScroll);
+
+  // Lightbox
+  let currentImageIndex = 0;
+  const allImages = [
+    'https://via.placeholder.com/300x200/6b5cff/ffffff?text=Joomla+Deploy+1',
+    'https://via.placeholder.com/300x200/b56cff/ffffff?text=Joomla+Deploy+2',
+    'https://via.placeholder.com/300x200/ff9f7f/ffffff?text=Architecture+Reseau',
+    'https://via.placeholder.com/300x200/ffd29f/ffffff?text=GLPI+Dashboard'
+  ];
+
+  function openLightbox(index) {
+    currentImageIndex = index;
+    const lightbox = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    img.src = allImages[index];
+    lightbox.classList.add('active');
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+  }
+
+  function nextImage() {
+    currentImageIndex = (currentImageIndex + 1) % allImages.length;
+    document.getElementById('lightbox-img').src = allImages[currentImageIndex];
+  }
+
+  function prevImage() {
+    currentImageIndex = (currentImageIndex - 1 + allImages.length) % allImages.length;
+    document.getElementById('lightbox-img').src = allImages[currentImageIndex];
+  }
+
+  function downloadCV() {
+    alert('🎉 Le CV sera téléchargé en PDF ! \n\nRemplace cette alerte par un vrai lien vers ton CV PDF.');
+    // À remplacer par : window.open('chemin/vers/ton-cv.pdf');
+  }
+
+  // Fermer la lightbox avec la touche Échap
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') nextImage();
+    if (e.key === 'ArrowLeft') prevImage();
+  });
+
+  // Back to Top Button
+  const backToTopBtn = document.createElement('button');
+  backToTopBtn.classList.add('back-to-top');
+  backToTopBtn.innerHTML = '↑';
+  backToTopBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.body.appendChild(backToTopBtn);
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTopBtn.classList.add('visible');
+    } else {
+      backToTopBtn.classList.remove('visible');
+    }
+  });
+</script>
