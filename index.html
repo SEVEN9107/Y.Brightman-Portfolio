@@ -11,26 +11,29 @@
 <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</button>
 <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">☰</button>
 
-<aside class="sidebar" id="sidebar">
-  <div class="profile">
-    <div class="profile-avatar">👨‍💻</div>
-    <h3>YOGANANTH BRIGHTMAN</h3>
-    <span>BTS SIO SISR</span>
-    <span>2024 – 2026</span>
+<header class="topbar">
+  <div class="topbar-container">
+    
+    <div class="brand">
+      <span class="brand-icon"></span>
+      <span class="brand-name">YOGANANTH BRIGHTMAN</span>
+    </div>
+
+    <nav class="topbar-nav">
+      <a href="#apropos">À propos</a>
+      <a href="#formations">Formations</a>
+      <a href="#entreprise">Stage</a>
+      <a href="#projets">Projets</a>
+      <a href="#competences">Compétences</a>
+      <a href="#veille">Veille</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
   </div>
-  <nav>
-    <a href="#apropos">À propos de moi</a>
-    <a href="#formations">Formations</a>
-    <a href="#entreprise">Stage</a>
-    <a href="#projets">Projets</a>
-    <a href="#competences">Compétences</a>
-    <a href="#veille">Veille technologique</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</aside>
+</header>
 
 <section id="apropos">
-  <h2>👋 À propos de moi</h2>
+  <h2>À propos de moi</h2>
   <div class="card">
     <h3>Bienvenue sur mon portfolio</h3>
     <p>Étudiant en <strong>BTS SIO option SISR (Solutions d'Infrastructure, Systèmes et Réseaux)</strong> au Lycée Parc de Vilgénis à Massy, je me passionne pour l'infrastructure IT, les réseaux et la sécurité informatique. 
@@ -44,7 +47,7 @@
       <div class="timeline-content">
         <div class="card">
           <span class="timeline-date">2021 - 2024</span>
-          <h3>📜 Baccalauréat professionnel système numérique</h3>
+          <h3>Baccalauréat professionnel système numérique</h3>
           <p>Option Réseaux informatiques et systèmes communicants (RISC)</p>
           <em><p>Lycée Professionnel André-Marie Ampère</p></em>
         </div>
@@ -56,7 +59,7 @@
       <div class="timeline-content">
         <div class="card">
           <span class="timeline-date">2024 – 2026</span>
-          <h3>📜 BTS SIO - Option SISR</h3>
+          <h3>BTS SIO - Option SISR</h3>
           <p>Solutions d'Infrastructure, Systèmes et Réseaux</p>
           <em><p>Lycée Parc de Vilgénis, Massy</p></em>
         </div>
@@ -69,7 +72,7 @@
         <div class="card card-future">
           <span class="timeline-date timeline-date-future">2026 – 2027</span>
           <span class="badge-avenir">À venir</span>
-          <h3>🎯 Licence Professionnelle CYDOPS</h3>
+          <h3>Licence Professionnelle CYDOPS</h3>
           <p>Cyberdéfense, Opérations et Sécurité des Systèmes</p>
           <em><p>Projet de poursuite d'études en cybersécurité</p></em>
         </div>
@@ -79,7 +82,7 @@
 </section>
 
 <section id="formations">
-  <h2>🎓 Formations</h2>
+  <h2>Formations</h2>
   <div class="card">
     <h3>Le BTS SIO – Services Informatiques aux Organisations</h3>
     <p>Le BTS SIO (Services Informatiques aux Organisations) est un diplôme de niveau 5 en France, avec un diplôme de niveau bac +2. 
@@ -157,7 +160,7 @@
 </section>
 
 <section id="entreprise">
-  <h2>🏢 Stage</h2>
+  <h2>Stage</h2>
   
 <div class="stage-tabs">
     <button class="stage-tab-btn active" onclick="switchStage('stage-entreprise')">
@@ -195,7 +198,7 @@
 
       <!-- Activités de l'entreprise -->
       <div class="company-activities">
-        <h4>🎯 Domaines d'activité</h4>
+        <h4>Domaines d'activité</h4>
         <div class="activities-gallery">
           <div class="activity-item">
             <div class="activity-image">
@@ -226,7 +229,7 @@
 
       <!-- Organigramme -->
       <div class="organigramme-section">
-        <h4>📊 Ma position dans l'entreprise</h4>
+        <h4>Ma position dans l'entreprise</h4>
         <div class="organigramme-container">
           <img src="image/organi.png.png" alt="Organigramme">
         </div>
@@ -245,24 +248,23 @@
         <div class="company-info">
           <h3>Stage de 1ère année - Broker Informatiques</h3>
           <p><strong>Période :</strong> Mai - Juin 2025 (6 semaines)</p>
-          <p><strong>Rôle :</strong> Technicien informatique stagiaire</p>
         </div>
       </div>
 
-      <h4>🎯 Missions principales</h4>
+      <h4>Missions principales</h4>
       <ul>
-        <li>Support technique et assistance utilisateurs</li>
-        <li>Maintenance préventive et curative du parc informatique</li>
-        <li>Participation à l'inventaire et l'estimation du matériel</li>
-        <li>Effacement sécurisé des données sur les équipements recyclés</li>
-        <li>Installation et configuration de postes de travail</li>
+        <li>Audit de matériel informatique</li>
+        <li>Reparation de PC portable et fixe</li>
+        <li>Recensement des différents matériels informatiques</li>
+        <li>Inventaire dû matériel arrivant et vérification du fonctionnement</li>
+        <li>Installation d'OS (Windows et MacOS) et configuration de postes de travail</li>
+        <li>Répondre aux questions sur les caractéristiques dû matériel</li>
       </ul>
 
       <h4 style="margin-top: 30px;">💡 Compétences développées</h4>
       <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px;">
         <span class="tech-pill">Support technique</span>
         <span class="tech-pill">Gestion de parc</span>
-        <span class="tech-pill">Sécurité des données</span>
         <span class="tech-pill">Windows 10/11</span>
         <span class="tech-pill">MacOS</span>
         <span class="tech-pill">Diagnostic matériel</span>
@@ -280,13 +282,13 @@
         <div class="company-info">
           <h3>Stage de 2ème année - Broker Informatiques</h3>
           <p><strong>Période :</strong> Janvier - Février 2026 (6 semaines)</p>
-          <p><strong>Rôle :</strong> Technicien systèmes et réseaux stagiaire</p>
         </div>
       </div>
 
-      <h4>🎯 Missions avancées</h4>
+      <h4>Missions principales</h4>
       <ul>
         <li>Audit d'un parc informatique pour faire une valorisation</li>
+        Participation à l'inventaire et l'estimation du matériel
         <li>Mise en place d'un service de déploiement de Windows 11</li>
         <li>Intervention sur les demande des clients apres vente (SAV)</li>
         <li>Copie d'un iso paritr d'un pc (ISO) générique</li>
@@ -307,7 +309,7 @@
 </section>
 
 <section id="projets">
-  <h2>💼 Mes Projets</h2>
+  <h2>Mes Projets</h2>
   
   <!-- Onglets de navigation des projets -->
   <div class="project-tabs">
@@ -368,7 +370,7 @@
       </div>
 
       <div class="project-card" onclick="openProjectModal('bts2')">
-        <div class="project-icon">🌐</div>
+        <div class="project-icon">📧</div>
         <h3>Gestion GLPI</h3>
         <p>Traiter et répondre aux tickets</p>
         <span class="card-tag">Travail en mode projet</span>
@@ -417,11 +419,11 @@
 </div>
 
 <section id="competences">
-  <h2>🎯 Mes Compétences</h2>
+  <h2>Mes Compétences</h2>
   
   <!-- Bouton pour télécharger le tableau de compétences E5 -->
   <div class="card" style="text-align: center; margin-bottom: 40px;">
-    <h3>📄 Tableau de compétences BTS SIO</h3>
+    <h3>Tableau de compétences BTS SIO</h3>
     <p style="margin-bottom: 25px;">Téléchargez mon tableau de compétences détaillé pour l'épreuve E5</p>
     <a href="Tableau de synthese-Epreuve-E4-BTSSIO2025.pdf" target="_blank" class="btn-download-pdf">
       📥 Télécharger le tableau de compétences (PDF)
@@ -559,31 +561,40 @@
 </div>
 
 <section id="veille">
-  <h2>🔍 Veille Technologique</h2>
+  <h2>Veille Technologique</h2>
   <div class="card">
-    <h3>Thème : Cybersécurité et Protection des Infrastructures</h3>
-    <p>Ma veille technologique se concentre sur les dernières évolutions en matière de cybersécurité, notamment :</p>
+    <h3>Thème : L'IA Agentique (Multi-Agent Systems)</h3>
+    <p>Ma veille technologique se concentre sur les systèmes multi-agents intelligents, une technologie émergente qui révolutionne l'automatisation et l'intelligence artificielle. Les systèmes multi-agents permettent à plusieurs agents IA de collaborer pour résoudre des problèmes complexes de manière autonome.</p>
+    
+    <h4 style="margin-top: 25px;">🤖 Domaines d'application</h4>
     <ul style="margin-left: 20px; margin-top: 15px;">
-      <li>Les nouvelles vulnérabilités et attaques (ransomware, phishing, DDoS)</li>
-      <li>Les meilleures pratiques de sécurisation des infrastructures</li>
-      <li>L'évolution des normes et réglementations (RGPD, ISO 27001)</li>
-      <li>Les outils de détection et de prévention des intrusions</li>
-      <li>La sécurité du Cloud et de la virtualisation</li>
+      <li><strong>Automatisation intelligente :</strong> Orchestration d'agents spécialisés pour automatiser des workflows complexes</li>
+      <li><strong>Infrastructure IT :</strong> Gestion autonome des systèmes, détection d'anomalies et résolution proactive d'incidents</li>
+      <li><strong>Cybersécurité :</strong> Systèmes de défense multi-agents pour la détection et la réponse aux menaces en temps réel</li>
+      <li><strong>DevOps & SRE :</strong> Agents collaboratifs pour le monitoring, le déploiement et l'optimisation des infrastructures</li>
+      <li><strong>Assistance technique :</strong> Agents conversationnels collaborant pour résoudre des problèmes techniques complexes</li>
     </ul>
-
+    
     <h4 style="margin-top: 30px;">📚 Sources de veille</h4>
     <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px;">
-      <span class="card-tag">🔗 ANSSI</span>
-      <span class="card-tag">🔗 CERT-FR</span>
-      <span class="card-tag">🔗 Bleeping Computer</span>
-      <span class="card-tag">🔗 KrebsOnSecurity</span>
-      <span class="card-tag">🔗 The Hacker News</span>
-      <span class="card-tag">🔗 Reddit r/sysadmin</span>
+      <span class="card-tag">🔗 arXiv.org (AI Research)</span>
+      <span class="card-tag">🔗 Papers With Code</span>
+      <span class="card-tag">🔗 Microsoft Research</span>
+      <span class="card-tag">🔗 OpenAI Blog</span>
+      <span class="card-tag">🔗 Anthropic Research</span>
+      <span class="card-tag">🔗 LangChain Blog</span>
+      <span class="card-tag">🔗 Towards Data Science</span>
+      <span class="card-tag">🔗 Reddit r/MachineLearning</span>
     </div>
 
-    <h4 style="margin-top: 30px;">🎯 Bénéfices</h4>
-    <p>Cette veille me permet de rester informé des dernières menaces et des solutions pour protéger les infrastructures IT. 
-    Elle me permet également d'anticiper les évolutions technologiques et d'adapter mes compétences en conséquence.</p>
+    <h4 style="margin-top: 30px;">🎯 Intérêt pour le métier SISR</h4>
+    <p>L'IA Agentique représente une évolution majeure pour les administrateurs systèmes et réseaux. Ces technologies permettent d'automatiser la gestion des infrastructures, d'améliorer la résilience des systèmes et d'optimiser les opérations IT. La compréhension de ces systèmes multi-agents devient essentielle pour :</p>
+    <ul style="margin-left: 20px; margin-top: 10px;">
+      <li>Déployer des solutions d'auto-réparation et d'auto-optimisation des infrastructures</li>
+      <li>Mettre en place des systèmes de monitoring intelligents avec réponse automatisée</li>
+      <li>Intégrer l'IA dans les workflows DevOps et la gestion de la configuration</li>
+      <li>Améliorer la détection et la réponse aux incidents de sécurité</li>
+    </ul>
 
     <!-- Bouton pour accéder à la page de veille complète -->
     <div style="text-align: center; margin-top: 40px;">
@@ -595,7 +606,7 @@
 </section>
 
 <section id="contact">
-  <h2>📧 Contact</h2>
+  <h2>Contact</h2>
   <div class="card">
     <h3>Restons en contact</h3>
     <p>N'hésitez pas à me contacter pour toute question ou opportunité professionnelle.</p>
@@ -649,8 +660,8 @@ const projectsData = {
     ],
     skills: ['B1.5 - Mettre à disposition un service informatique', 'B1.1 - Gérer le patrimoine informatique'],
     images: [
-      { url: 'image/menuIV.jpg', caption: 'Menu IVentoy' },
-      { url: 'images/menuIV.jpg', caption: 'Menu de déploiement' },
+      { url: 'image/menuIV.JPG', caption: 'Menu IVentoy' },
+      { url: 'images/pro1-2.png', caption: 'Menu de déploiement' },
       { url: 'images/pro1-3.png', caption: 'Schéma infrastructure' }
     ]
   },
@@ -718,7 +729,7 @@ const projectsData = {
     ]
   },
   bts2: {
-    icon: '🌐',
+    icon: '📧',
     title: 'Gestion des ticket GLPI',
     context: 'Dans le cadre du projet Station F, j’ai participé à la gestion des tickets GLPI pour traiter les incidents signalés par les utilisateurs.',
     objectives: [
@@ -780,7 +791,7 @@ const projectsData = {
     images: [
       { url: 'image/PC1.JPG', caption: 'Setup' },
       { url: 'image/PC2.JPG', caption: 'Intérieur du PC' },
-      { url: 'image/PC3.JPEG', caption: 'Intérieur de PC' }
+      { url: 'image/PC3.JPEG', caption: 'Intérieur du PC' }
     ]
   },
   perso3: {
@@ -1203,9 +1214,4 @@ document.addEventListener('click', function(event) {
 </script>
 
 </body>
-
 </html>
-
-
-
-
